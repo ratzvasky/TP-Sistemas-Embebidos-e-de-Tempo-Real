@@ -1,0 +1,5 @@
+
+https://www.dfrobot.com/wiki/index.php/Waterproof_DS18B20_Digital_Temperature_Sensor_(SKU:DFR0198) 06/04/2018
+https://github.com/sparkfun/simple_sketches/blob/master/DS18B20/DS18B20.ino
+https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor
+https://www.filipeflop.com/blog/temperatura-pressao-bmp180-arduino/
