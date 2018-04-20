@@ -1,0 +1,10 @@
+Sensor de chuva.
+3 sensores de luz (1 direito e 2 inclinados para saber a posição do SOL).
+Humidade.
+Temperatura ambiente e do solo.
+Medir a pressão atmosferica.
+Anemômetro (velocidade do vento). - usar dois sensores infravermelhos (emisor e recetor) e com uma ventoinhas, calcular o número de rotações...
+
+
+RTOS (3 tarefas).
+Barrmetal.
