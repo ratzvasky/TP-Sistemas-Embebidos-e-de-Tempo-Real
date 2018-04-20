@@ -6,3 +6,4 @@ https://www.filipeflop.com/blog/temperatura-pressao-bmp180-arduino/
 
 
 https://www.tutorialspoint.com/arduino/arduino_water_detector_sensor.htm 20/04/2018
+https://www.arduinoecia.com.br/2014/12/modulo-i2c-display-16x2-arduino.html

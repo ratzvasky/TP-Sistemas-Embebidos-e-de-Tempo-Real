@@ -6,12 +6,16 @@
 #include "DHT.h" //  usada para o DHT11
 #include <Wire.h>
 #include <Adafruit_BMP085.h> // usada para o BMP180
+#include <LiquidCrystal_I2C.h> // usada para o lcd
 
 
 
 OneWire ds(33);  // A fio de dados está ligado no pin digital7
 DHT dht(37, DHT11); // Pin que esta ligado a comunicação e o tipo de sensor
 Adafruit_BMP085 bmp180; //
+
+// Inicializa o display no endereco 0x27
+LiquidCrystal_I2C lcd(0x27,2,1,0,4,5,6,7,3, POSITIVE);
 
 
 // variaveis
@@ -21,6 +25,7 @@ int temperaturaAmbiente;
 float temperaturaAmbienteBMP;
 int32_t  pressaoAtmosferica;
 int32_t  altitude;
+int valorIR;
 
 
 void setup() 
@@ -33,6 +38,8 @@ void setup()
 
    pinMode(41, INPUT); // Pin de estrada do sensor de agua
    pinMode(45, OUTPUT); // Pin de saida do buzzer
+
+   lcd.begin (16,2);
 
 }
 
@@ -86,7 +93,16 @@ void loop()
     delay(50);
     digitalWrite(45, LOW);
   }
-   
+
+  valorIR = analogRead(0);
+  Serial.println(valorIR);
+
+
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Hello world !!");
+  
+
 
   delay(1000); 
 }
