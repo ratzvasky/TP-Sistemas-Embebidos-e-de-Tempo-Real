@@ -15,7 +15,9 @@ DHT dht(37, DHT11); // Pin que esta ligado a comunicação e o tipo de sensor
 Adafruit_BMP085 bmp180; //
 
 // Inicializa o display no endereco 0x27
-LiquidCrystal_I2C lcd(0x27,2,1,0,4,5,6,7,3, POSITIVE);
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+
+
 
 
 // variaveis
@@ -100,6 +102,8 @@ void loop()
 
   lcd.clear();
   lcd.setCursor(0,0);
+  lcd.print("Hello world !!");
+  lcd.setCursor(0,1);
   lcd.print("Hello world !!");
   
 
