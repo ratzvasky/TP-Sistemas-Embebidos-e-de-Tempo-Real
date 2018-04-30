@@ -1,7 +1,13 @@
+/*
+    Estação metereologica
+    UC - Sistemas Embebidos e de Tempo Real (ESI)
 
-// Teste sensor temperatura
+    Rúben Guimarães nº11156
+    Kyrylo Yavorenko nº
+*/
 
-// bibliotecas
+
+// Bibliotecas usadas
 #include <OneWire.h> //  usada para ler valor do ds18b20 
 #include "DHT.h" //  usada para o DHT11
 #include <Wire.h>
@@ -9,24 +15,33 @@
 #include <LiquidCrystal_I2C.h> // usada para o lcd
 
 
+#define Sensor_Temp 37 // DHT11
+#define Sensor_Temp_2 33 // DS18B20
+#define Sensor_Agua 41
+#define Buzzer 45
+#define IR A0
 
-OneWire ds(33);  // A fio de dados está ligado no pin digital7
-DHT dht(37, DHT11); // Pin que esta ligado a comunicação e o tipo de sensor
-Adafruit_BMP085 bmp180; //
+
+// Declaração de objectos
+OneWire ds(Sensor_Temp_2);
+DHT dht(Sensor_Temp, DHT11);
+Adafruit_BMP085 bmp180;
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); // Inicializa o display no endereco 0x27
 
 
-
+// Declaração de variaveis globais
+uint8_t humidade;
+uint8_t temperaturaAmbiente;
 float temperaturaAgua;
-int humidade;
-int temperaturaAmbiente;
 float temperaturaAmbienteBMP;
-int32_t  pressaoAtmosferica;
-int32_t  altitude;
-int valorIR;
+uint16_t  pressaoAtmosferica;
+int  altitude;
+uint8_t velocidadeVento;
 int valorSensorAgua;
 
 
+
+// Inicializa objectos e define pin's de entrada/saida
 void setup()
 {
   Serial.begin(9600);
@@ -35,11 +50,12 @@ void setup()
   bmp180.begin();
   lcd.begin (16, 2);
 
-  pinMode(41, INPUT); // Pin de estrada do sensor de agua
-  pinMode(45, OUTPUT); // Pin de saida do buzzer
+  pinMode(Sensor_Agua, INPUT);
+  pinMode(Buzzer, OUTPUT);
 }
 
 
+// Ciclo que vai correr o programa
 void loop()
 {
 
@@ -49,17 +65,13 @@ void loop()
   printValuesOnConsole();
 
 
-  // Teste do anemometro (IR's)
-  valorIR = analogRead(0);
-  Serial.println(valorIR);
-
   showValuesLCD();
 
   delay(1000);
 }
 
 
-// Método que vai mostar no LCD os valores lidos pelos sensodores
+// Método que vai mostar no LCD os valores lidos pelos sensores
 void showValuesLCD()
 {
   lcd.clear();
@@ -129,6 +141,18 @@ void showValuesLCD()
     lcd.print("Nao!");
   else  // Se detectar agua
     lcd.print("Sim!");
+
+  delay(1000);
+
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Velocidade vento");
+  lcd.setCursor(0, 1);
+  lcd.print(velocidadeVento);
+  lcd.print(" RPM");
+
+
 }
 
 
@@ -149,7 +173,9 @@ void getSensorValues()
   //altitude = bmp180.readAltitude(100600); // 100600 pressao atmosferica media ao nivel do mar no porto (para efeitos de calibração)
   altitude = bmp180.readAltitude();
 
-  valorSensorAgua = digitalRead(41);
+  valorSensorAgua = digitalRead(Sensor_Agua);
+
+  velocidadeVento = ((getWindSpeed() * 60) / 5); // Recebe uma contagem e efetua uma regra de 3 simples para calcular uma estimativa das RPM's do vento
 }
 
 
@@ -190,6 +216,11 @@ void printValuesOnConsole()
     beep();
   }
 
+  Serial.print("Velocidade vento: ");
+  Serial.print(velocidadeVento);
+  Serial.println(" RPM");
+
+
 }
 
 
@@ -201,6 +232,37 @@ void beep()
   digitalWrite(45, LOW);
 }
 
+
+// Método que vai ler a velocidade do vento durante 5 segundos
+uint8_t getWindSpeed()
+{
+  uint8_t contador = 0;
+  uint8_t aux;
+
+  int valorSensor;
+
+  long starttime = millis();
+  long endtime = starttime;
+
+  while ((endtime - starttime) <= 5000)
+  {
+    valorSensor = analogRead(IR);
+
+    if (valorSensor > 800) // usada para evitar a mesma leitura
+      aux = 0;
+
+    if (valorSensor < 800 && aux == 0) // Se a flag tiver sido limpa e o valor do sensor for inferior ao threshold
+    {
+      contador++;
+      aux = 1;
+    }
+
+    delay(50);
+    endtime = millis();
+  }
+
+  return contador;
+}
 
 
 
