@@ -3,7 +3,9 @@
     UC - Sistemas Embebidos e de Tempo Real (ESI)
 
     Rúben Guimarães nº11156
-    Kyrylo Yavorenko nº
+    Kyrylo Yavorenko nº10355
+
+    Implementação em BareMetal
 */
 
 
@@ -20,6 +22,9 @@
 #define Sensor_Agua 41
 #define Buzzer 45
 #define IR A0
+#define LDR1 A1
+#define LDR2 A2
+#define LDR3 A3
 
 
 // Declaração de objectos
@@ -37,7 +42,11 @@ float temperaturaAmbienteBMP;
 uint16_t  pressaoAtmosferica;
 int  altitude;
 uint8_t velocidadeVento;
-int valorSensorAgua;
+boolean valorSensorAgua;
+int ldrValue1;
+int ldrValue2;
+int ldrValue3;
+int tempoDelay = 1000;
 
 
 
@@ -52,6 +61,9 @@ void setup()
 
   pinMode(Sensor_Agua, INPUT);
   pinMode(Buzzer, OUTPUT);
+
+  lcd.setCursor(0, 0);
+  lcd.print(F("A ler Sensores.."));
 }
 
 
@@ -67,7 +79,8 @@ void loop()
 
   showValuesLCD();
 
-  delay(1000);
+
+  delay(tempoDelay);
 }
 
 
@@ -76,83 +89,91 @@ void showValuesLCD()
 {
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Temp. Amb.");
+  lcd.print(F("Temp. Amb."));
   lcd.setCursor(0, 1);
-  lcd.print(temperaturaAmbiente);
-  lcd.print((char)223);
-  lcd.print("C");
+  lcd.print(String(temperaturaAmbiente) + String((char)223) + String(F(" C")));
 
-  delay(1000);
+
+  delay(tempoDelay);
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Humidade Ambi.");
+  lcd.print(F("Humidade Ambi."));
   lcd.setCursor(0, 1);
-  lcd.print(humidade);
-  lcd.print("%");
+  lcd.print(String(humidade) + String(F(" %")));
 
-  delay(1000);
+  delay(tempoDelay);
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Temp. Ambi. 2");
+  lcd.print(F("Temp. Ambi. 2"));
   lcd.setCursor(0, 1);
-  lcd.print(temperaturaAmbienteBMP);
-  lcd.print((char)223);
-  lcd.print("C");
+  lcd.print(String(temperaturaAmbienteBMP) + String((char)223) + String(" C"));
 
-  delay(1000);
+
+  delay(tempoDelay);
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Temp. agua");
+  lcd.print(F("Temp. agua"));
   lcd.setCursor(0, 1);
-  lcd.print(temperaturaAgua);
-  lcd.print((char)223);
-  lcd.print("C");
+  lcd.print(String(temperaturaAgua) + String((char)223) + String(" C"));
 
-  delay(1000);
+  delay(tempoDelay);
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("P. Atmosferica");
+  lcd.print(F("P. Atmosferica"));
   lcd.setCursor(0, 1);
-  lcd.print(pressaoAtmosferica);
-  lcd.print(" Pa");
+  lcd.print(String(pressaoAtmosferica) + String(" Pa"));
 
-  delay(1000);
+  delay(tempoDelay);
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Altitude");
+  lcd.print(F("Altitude"));
   lcd.setCursor(0, 1);
   lcd.print(altitude);
   lcd.print(" m");
 
-  delay(1000);
+  delay(tempoDelay);
 
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Agua no sensor?");
+  lcd.print(F("Agua no sensor?"));
   lcd.setCursor(0, 1);
 
   if ( valorSensorAgua == LOW)
-    lcd.print("Nao!");
+    lcd.print(F("Nao!"));
   else  // Se detectar agua
-    lcd.print("Sim!");
+    lcd.print(F("Sim!"));
 
-  delay(1000);
+  delay(tempoDelay);
 
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Velocidade vento");
+  lcd.print(F("Velocidade vento"));
   lcd.setCursor(0, 1);
-  lcd.print(velocidadeVento);
-  lcd.print(" RPM");
+  lcd.print(String(velocidadeVento) + String(" RPM"));
 
 
+  delay(tempoDelay);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(F("Posicao sol"));
+  lcd.setCursor(0, 1);
+
+  if  ( ldrValue1 < ldrValue2 && ldrValue1 < ldrValue3)
+    lcd.print(F("Este"));
+
+  if ( ldrValue2 < ldrValue1 && ldrValue2 < ldrValue3)
+    lcd.print(F("Sul"));
+
+  if ( ldrValue3 < ldrValue1 && ldrValue3 < ldrValue2)
+    lcd.print(F("Oeste"));
 }
 
 
@@ -176,49 +197,67 @@ void getSensorValues()
   valorSensorAgua = digitalRead(Sensor_Agua);
 
   velocidadeVento = ((getWindSpeed() * 60) / 5); // Recebe uma contagem e efetua uma regra de 3 simples para calcular uma estimativa das RPM's do vento
+
+  ldrValue1 = analogRead(LDR1);
+  ldrValue2 = analogRead(LDR2);
+  ldrValue3 = analogRead(LDR3);
 }
 
 
 // Método que imprime os valores enviados para a porta de comunicação na consola
 void printValuesOnConsole()
 {
-  Serial.print("Humidade ambiente: ");
+  Serial.println(F(" *** Valores Lidos ***"));
+    
+  Serial.print(F("Humidade ambiente: "));
   Serial.print(humidade);
-  Serial.print("%\t");
+  Serial.println(F("%\t"));
 
-  Serial.print("Temperatura ambiente: ");
+  Serial.print(F("Temperatura ambiente: "));
   Serial.print(temperaturaAmbiente);
-  Serial.print("ºC\t");
+  Serial.println(F("ºC\t"));
 
-  Serial.print("Temperatura água: ");
+  Serial.print(F("Temperatura água: "));
   Serial.print(temperaturaAgua);
-  Serial.print("ºC\t");
+  Serial.println(F("ºC\t"));
 
-  Serial.print("Temperatura BMP: ");
+  Serial.print(F("Temperatura BMP: "));
   Serial.print(temperaturaAmbienteBMP);
-  Serial.print("ºC\t");
+  Serial.println(F("ºC\t"));
 
-  Serial.print("Pressão atmosferica: ");
+  Serial.print(F("Pressão atmosferica: "));
   Serial.print(pressaoAtmosferica);
-  Serial.print("Pa\t");
+  Serial.println(F("Pa\t"));
 
-  Serial.print("Altitude: ");
+  Serial.print(F("Altitude: "));
   Serial.print(altitude);
-  Serial.println("m");
+  Serial.println(F("m"));
 
-
+  Serial.print(F("Água no sensor ? "));
   if ( valorSensorAgua == LOW)
-    Serial.println(" Seco!");
+    Serial.println(F(" Não!"));
 
   else  // Se detectar agua
   {
-    Serial.println(" Água!");
+    Serial.println(F("Sim!"));
     beep();
   }
 
-  Serial.print("Velocidade vento: ");
+  Serial.print(F("Velocidade vento: "));
   Serial.print(velocidadeVento);
-  Serial.println(" RPM");
+  Serial.println(F(" RPM"));
+
+
+  Serial.print(F("Posição do sol: "));
+  if  ( ldrValue1 < ldrValue2 && ldrValue1 < ldrValue3)
+    Serial.println(F("Este"));
+
+  if ( ldrValue2 < ldrValue1 && ldrValue2 < ldrValue3)
+    Serial.println(F("Sul"));
+
+  if ( ldrValue3 < ldrValue1 && ldrValue3 < ldrValue2)
+    Serial.println(F("Oeste"));
+
 
 
 }
