@@ -28,13 +28,10 @@
 #define LDR2 A2
 #define LDR3 A3
 
-// Define o nome das tarefas
+// Declara as tarefas
 void ShowValuesLCDTask( void *pvParameters );
 void GetSensorValuesTask( void *pvParameters );
 void PrintValuesOnConsoleTask( void *pvParameters );
-void BeepTask( void *pvParameters );
-void GetWindSpeedTask( void *pvParameters );
-void GetTemperaturaAguaTask( void *pvParameters );
 
 
 // Declaração de objectos
@@ -57,7 +54,6 @@ int ldrValue1;
 int ldrValue2;
 int ldrValue3;
 int tempoDelay = 1000;
-uint8_t contador = 0; // RPM vento
 
 
 
@@ -73,68 +69,37 @@ void setup()
   pinMode(Sensor_Agua, INPUT);
   pinMode(Buzzer, OUTPUT);
 
-  lcd.setCursor(0, 0);
-  lcd.print(F("A ler Sensores.."));
 
   while (!Serial) {
     ;
   }
 
-    xTaskCreate(
+  xTaskCreate(
     ShowValuesLCDTask
-    ,  (const portCHAR *)"ShowValuesLCDTask"   
-    ,  128  
+    ,  (const portCHAR *)"ShowValuesLCDTask"
+    ,  512
     ,  NULL
-    ,  1
-    ,  NULL );
-
-      xTaskCreate(
-    GetSensorValuesTask
-    ,  (const portCHAR *)"GetSensorValuesTask"   
-    ,  128  
-    ,  NULL
-    ,  2  
-    ,  NULL );
-
-      xTaskCreate(
-    PrintValuesOnConsoleTask
-    ,  (const portCHAR *)"PrintValuesOnConsoleTask"   
-    ,  128  
-    ,  NULL
-    ,  1
+    ,  2
     ,  NULL );
 
   xTaskCreate(
-    BeepTask
-    ,  (const portCHAR *) "BeepTask"
-    ,  128  
-    ,  NULL
-    ,  1  
-    ,  NULL );
-
-    
-
-      xTaskCreate(
-    GetWindSpeedTask
-    ,  (const portCHAR *) "GetWindSpeedTask"
-    ,  128  
-    ,  NULL
-    ,  3 
-    ,  NULL );
-
-      xTaskCreate(
-    GetTemperaturaAguaTask
-    ,  (const portCHAR *) "GetTemperaturaAguaTask"
-    ,  128  
+    GetSensorValuesTask
+    ,  (const portCHAR *)"GetSensorValuesTask"
+    ,  512
     ,  NULL
     ,  3
     ,  NULL );
 
 
+  xTaskCreate(
+    PrintValuesOnConsoleTask
+    ,  (const portCHAR *)"PrintValuesOnConsoleTask"
+    ,  512
+    ,  NULL
+    ,  1
+    ,  NULL );
+
 }
-
-  
-
 
 
 void loop()
@@ -144,16 +109,20 @@ void loop()
 
 
 // Método que vai mostar no LCD os valores lidos pelos sensores
-void ShowValuesLCDTask(void *pvParameters)  // This is a task.
+void ShowValuesLCDTask(void *pvParameters)
 {
+
   (void) pvParameters;
+
   for (;;)
   {
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print(F("Temp. Amb."));
     lcd.setCursor(0, 1);
-    lcd.print(String(temperaturaAmbiente) + String((char)223) + String(F(" C")));
+    lcd.print(temperaturaAmbiente);
+    lcd.print((char)223);
+    lcd.print(F(" C"));
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
 
@@ -161,7 +130,9 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
     lcd.setCursor(0, 0);
     lcd.print(F("Humidade Ambi."));
     lcd.setCursor(0, 1);
-    lcd.print(String(humidade) + String(F(" %")));
+    lcd.print(humidade);
+    lcd.print(F(" %"));
+    
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
 
@@ -169,7 +140,10 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
     lcd.setCursor(0, 0);
     lcd.print(F("Temp. Ambi. 2"));
     lcd.setCursor(0, 1);
-    lcd.print(String(temperaturaAmbienteBMP) + String((char)223) + String(" C"));
+    lcd.print(temperaturaAmbienteBMP);
+    lcd.print((char)223);
+    lcd.print(F(" C"));
+    
 
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
@@ -178,7 +152,9 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
     lcd.setCursor(0, 0);
     lcd.print(F("Temp. agua"));
     lcd.setCursor(0, 1);
-    lcd.print(String(temperaturaAgua) + String((char)223) + String(" C"));
+    lcd.print(temperaturaAgua);
+    lcd.print((char)223);
+    lcd.print(F(" C"));
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
 
@@ -186,7 +162,8 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
     lcd.setCursor(0, 0);
     lcd.print(F("P. Atmosferica"));
     lcd.setCursor(0, 1);
-    lcd.print(String(pressaoAtmosferica) + String(" Pa"));
+    lcd.print(pressaoAtmosferica);
+    lcd.print(F(" Pa"));
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
 
@@ -195,7 +172,7 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
     lcd.print(F("Altitude"));
     lcd.setCursor(0, 1);
     lcd.print(altitude);
-    lcd.print(" m");
+    lcd.print(F(" m"));
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
 
@@ -212,12 +189,12 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
 
-
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print(F("Velocidade vento"));
     lcd.setCursor(0, 1);
-    lcd.print(String(velocidadeVento) + String(" RPM"));
+    lcd.print(velocidadeVento);
+    lcd.print(F(" RPM"));
 
 
     vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
@@ -235,8 +212,11 @@ void ShowValuesLCDTask(void *pvParameters)  // This is a task.
 
     if ( ldrValue3 < ldrValue1 && ldrValue3 < ldrValue2)
       lcd.print(F("Oeste"));
+
+      vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
   }
 }
+
 
 
 // Método que vai receber informaçãor dos diferentes sensores
@@ -246,7 +226,7 @@ void GetSensorValuesTask(void *pvParameters)
 
   for (;;)
   {
-    //temperaturaAgua = GetTemperaturaAguaTask(pvParameters);
+    temperaturaAgua = GetTemperaturaAgua();
 
     humidade = (int)dht.readHumidity();
 
@@ -256,16 +236,21 @@ void GetSensorValuesTask(void *pvParameters)
 
     pressaoAtmosferica = bmp180.readPressure();
 
+
     //altitude = bmp180.readAltitude(100600); // 100600 pressao atmosferica media ao nivel do mar no porto (para efeitos de calibração)
     altitude = bmp180.readAltitude();
 
     valorSensorAgua = digitalRead(Sensor_Agua);
 
-    velocidadeVento = ((contador * 60) / 5); // Recebe uma contagem e efetua uma regra de 3 simples para calcular uma estimativa das RPM's do vento
+    velocidadeVento = ((GetWindSpeed() * 60) / 5); // Recebe uma contagem e efetua uma regra de 3 simples para calcular uma estimativa das RPM's do vento
 
     ldrValue1 = analogRead(LDR1);
     ldrValue2 = analogRead(LDR2);
     ldrValue3 = analogRead(LDR3);
+
+
+    vTaskDelay( 50 / portTICK_PERIOD_MS );
+
   }
 }
 
@@ -278,6 +263,7 @@ void PrintValuesOnConsoleTask(void *pvParameters)  // This is a task.
 
   for (;;)
   {
+    Serial.println(F(" "));
     Serial.println(F(" *** Valores Lidos ***"));
 
     Serial.print(F("Humidade ambiente: "));
@@ -311,7 +297,7 @@ void PrintValuesOnConsoleTask(void *pvParameters)  // This is a task.
     else  // Se detectar agua
     {
       Serial.println(F("Sim!"));
-      BeepTask(pvParameters);
+      Beep();
     }
 
     Serial.print(F("Velocidade vento: "));
@@ -329,110 +315,109 @@ void PrintValuesOnConsoleTask(void *pvParameters)  // This is a task.
     if ( ldrValue3 < ldrValue1 && ldrValue3 < ldrValue2)
       Serial.println(F("Oeste"));
 
+    vTaskDelay( tempoDelay / portTICK_PERIOD_MS );
+
   }
 }
 
 
 
 // Método que vai fazer com que o buzzer ligado a porta emita um beep
-void BeepTask(void *pvParameters)  // This is a task.
+void Beep()
 {
-  (void) pvParameters;
-
-  for (;;)
-  {
-    digitalWrite(45, HIGH);
-    vTaskDelay( 50 / portTICK_PERIOD_MS );
-    digitalWrite(45, LOW);
-  }
+  digitalWrite(45, HIGH);
+  delay(50);
+  digitalWrite(45, LOW);
 }
 
 
 
 
 // Método que vai ler a velocidade do vento durante 5 segundos
-void GetWindSpeedTask(void *pvParameters)  // This is a task.
+uint8_t GetWindSpeed()
 {
-  (void) pvParameters;
 
-  for (;;)
+  uint8_t aux;
+  int valorSensor;
+  long starttime;
+  long endtime;
+  uint8_t contador = 0; // RPM vento
+
+
+  contador = 0; // faz reset ao contador
+
+
+  starttime = millis();
+  endtime = starttime;
+
+  while ((endtime - starttime) <= 5000)
   {
-    uint8_t aux;
-    contador = 0; // faz reset ao contador
+    valorSensor = analogRead(IR);
 
-    int valorSensor;
+    if (valorSensor > 800) // usada para evitar a mesma leitura
+      aux = 0;
 
-    long starttime = millis();
-    long endtime = starttime;
-
-    while ((endtime - starttime) <= 5000)
+    if (valorSensor < 800 && aux == 0) // Se a flag tiver sido limpa e o valor do sensor for inferior ao threshold
     {
-      valorSensor = analogRead(IR);
-
-      if (valorSensor > 800) // usada para evitar a mesma leitura
-        aux = 0;
-
-      if (valorSensor < 800 && aux == 0) // Se a flag tiver sido limpa e o valor do sensor for inferior ao threshold
-      {
-        contador++;
-        aux = 1;
-      }
-
-      vTaskDelay( 50 / portTICK_PERIOD_MS );
-      endtime = millis();
+      contador++;
+      aux = 1;
     }
+
+    delay(50);
+    endtime = millis();
+
   }
+
+  return contador;
 }
 
 
 
 
 // Método que le informação do ds18b20 (sparkfun)
-void GetTemperaturaAguaTask(void *pvParameters)  // This is a task.
+float GetTemperaturaAgua()
 {
-  (void) pvParameters;
 
-  for (;;)
-  {
-    byte data[12];
-    byte addr[8];
+  byte data[12];
+  byte addr[8];
 
-    if ( !ds.search(addr)) {
-      //no more sensors on chain, reset search
-      ds.reset_search();
-      return -1000;
-    }
 
-    if ( OneWire::crc8( addr, 7) != addr[7]) {
-      Serial.println("CRC is not valid!");
-      return -1000;
-    }
-
-    if ( addr[0] != 0x10 && addr[0] != 0x28) {
-      Serial.print("Device is not recognized");
-      return -1000;
-    }
-
-    ds.reset();
-    ds.select(addr);
-    ds.write(0x44, 1); // start conversion, with parasite power on at the end
-
-    byte present = ds.reset();
-    ds.select(addr);
-    ds.write(0xBE); // Read Scratchpad
-
-    for (int i = 0; i < 9; i++) { // we need 9 bytes
-      data[i] = ds.read();
-    }
-
+  if ( !ds.search(addr)) {
+    //no more sensors on chain, reset search
     ds.reset_search();
-
-    byte MSB = data[1];
-    byte LSB = data[0];
-
-    float tempRead = ((MSB << 8) | LSB); //using two's compliment
-    temperaturaAgua = tempRead / 16;
-
-    
+    return -1000;
   }
+
+  if ( OneWire::crc8( addr, 7) != addr[7]) {
+    Serial.println("CRC is not valid!");
+    return -1000;
+  }
+
+  if ( addr[0] != 0x10 && addr[0] != 0x28) {
+    Serial.print("Device is not recognized");
+    return -1000;
+  }
+
+  ds.reset();
+  ds.select(addr);
+  ds.write(0x44, 1); // start conversion, with parasite power on at the end
+
+  byte present = ds.reset();
+  ds.select(addr);
+  ds.write(0xBE); // Read Scratchpad
+
+  for (int i = 0; i < 9; i++) { // we need 9 bytes
+    data[i] = ds.read();
+  }
+
+  ds.reset_search();
+
+  byte MSB = data[1];
+  byte LSB = data[0];
+
+  float tempRead = ((MSB << 8) | LSB); //using two's compliment
+  float temperatureSum = tempRead / 16;
+
+  return temperatureSum;
+
 }
