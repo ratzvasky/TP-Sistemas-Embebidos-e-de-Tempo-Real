@@ -114,29 +114,52 @@ Para o desenvolvimento do projecto foram utilizados os seguintes recursos:
 \begin{itemize}
 \item \textit{Arduino IDE 18.5} para o desevolvimento do codigo usado.
 \item \textit{GitHub Desktop} para atualizar o repositorio com o codigo do projecto.
+\item \textit{Fritzing 0.9.3b} para criar os prototipos dos esquema do projecto.
+
 \end{itemize}
 
 \textbf{Hardware:}
 \begin{itemize}
-\item \textit{json2csharp} para a criação de classes dos ficheiros \textit{JSON}. \cite{json2csharp}
-\item \textit{TinyTwitter} usada para facilitar a comunicação com o \textit{Twitter}.\cite{TinyTwitter}
-\item \textit{Azure} usado para alojar o serviço e base de dados. \cite{TinyTwitter}
+\item \textit{Arduino Mega 2560,} placa que contem o microcontralador que controla tudo o nosso projecto.
+\item \textit{DHT11,} sensor usado para obter leituras da humidade e da temperatura do ambiente.
+\item \textit{DS18B20,} sensor à prova de água usado para obter temperaturas de água.
+\item \textit{BMP180,} sensor que obtem leituras da pressão atmosferica e da temperatura ambiente, com os valores obtidos conseguimos fazer uma estimativa da altitude.
+\item \textit{Water Sensor,} sensor usado para saber se existe água ou não.
+\item \textit{Buzzer,} usado para dar um feedback sonoro caso seja detectada água no sensor de água.
+\item \textit{QTR-8RC,} sensor usado para contar as rotações por minuto de um cata-vento.
+\item \textit{LCD 16x2,} usado para mostrar os valores obtidos pelos sensores.
+\item \textit{Light Dependent Resistor,} usado para descobrir qual dos lados (este, sul ou oeste) o sol de encontra.
+\item \textit{Breadboard,} usada para montar o circuito.
+\item \textit{Diversas resistencias,} usadas para proteger componentes ou para servirer de pull-up.
+\item \textit{Diversos fios,} usados para efetuar as ligações entre componetes, breadboard e o arduino.
+
 \end{itemize}
 
 
 
-% API's externas usadas
-\chapter*{API's externas usadas}
-\addcontentsline{toc}{chapter}{API's externas usadas}
+% Esquema do projecto
+\chapter*{Esquema do projecto}
+\addcontentsline{toc}{chapter}{Esquema do projecto}
 
-Foram usadas 4 API's externas:
+Na imagem seguinte podemos verificar o esquema do projecto desevolvido na plataforma fritzing.
 
-\begin{itemize}
-\item \textit{ipapi.co} - Usada para receber um ficheiro \textit{JSON} com as informações de um dado endereço IP.\cite{ipapi}
-\item \textit{ipify  A  Simple IP Address API} - Usada para receber uma string com o endereço IP da nossa ligação.\cite{ipify}
-\item \textit{Twitter Developer Platform} - Usada para publicar\textit{Tweets}  no \textit{Twitter}. \cite{twitter}
-\item \textit{OpenWeatherMap} - Usada para receber um ficheiro \textit{JSON} com a informação meteologica de uma dada cidade. \cite{Weather}
-\end{itemize}
+\begin{figure} [!h]
+\centering
+\includegraphics[width=\textwidth]{Prints/esquema.png}
+\caption{Esquema do projecto}
+\label{Rotulo}
+\end{figure}
+
+\newpage
+Na imagem seguinte podemos ver o projecto totalmente finalizado.
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=\textwidth]{Prints/projecto.png}
+\caption{Foto do projecto finalizado.}
+\label{Rotulo}
+\end{figure}
+
 
 
 % Desenvolvimento
