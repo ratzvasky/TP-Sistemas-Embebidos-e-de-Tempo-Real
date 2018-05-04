@@ -166,25 +166,30 @@ Na imagem seguinte podemos ver o projecto totalmente finalizado.
 \chapter*{Desenvolvimento}
 \addcontentsline{toc}{chapter}{Desenvolvimento}
 
-O serviço foi desenvolvido recorrendo a um serviço do tipo \textit{Windows Communication Foundation} (WCF). Este efetua a comunicação com as API's externas, trabalha os dados recebidos (se necessário) e disponibiliza serviços para um ou mais cliente usarem. Os serviços que disponibiliza são os seguintes:
-\begin{itemize}
-\item \textbf{GetIPInfo/\{enderecoIP\}} do tipo GET que envia a informação do endereço IP recebido no campo enderecoIP, num ficheiro \textit{JSON}
-\item \textbf{MyIp} do tipo GET que envia a informação do endereço IP da ligação numa string.
-\item \textbf{Tweet} do tipo POST que receber uma mensagem e publicar essa mensagem na conta \url{https://twitter.com/trabalhoisi}. Este recorre a uma biblioteca\cite{TinyTwitter} para facilitar a comunicação com o \textit{Twitter}.
-\item \textbf{Weather/\{nomeCidade\}} do tipo GET que envia a informação metereologica da cidade recebida  no campo nomeCidade, num ficheiro \textit{JSON}
-\end{itemize}
+Inicialmente decidimos que a nossa abordagem ao projecto seria começarmos por bare metal, testar todos os sensores e as ligações nesta metadologia de codigo e só depois passar a parte que iriamos recorrer ao sistema operativo FreeRTOS. \linebreak
+
+Começamos por testar o sensor de temperatura DS18B20, para este recorremos a a biblioteca OneWire.h \cite{OneWire} para facilitar a leitura dos dados dos sensores. \cite{WaterproofDS18B20} \cite{sparkfunDS18B20}. De seguinda passamos ao sensor DHT11 que nos permite medir a pcertagem de humidade do ambiente e a temperatura. Para este recorremos a biblioteca DHT.h \cite{DHTadafruit}. \cite{DHT}. Depois passamos ao barómetro BMP180, este sensor permite-nos medir a pressão atmosferica, a temperatura e com a pressão atmosferica podemos calcular aproximadamente a altitude que encontra.  Para obter os valores recorremos a biblioteca  Wire.h  (nativa do arduino) e a  Adafruit\_BMP085.h \cite{bmpBiblio}. \cite{bmp}. Depois do circuito destes sensores montados e o codigo escrito, passamos a imprimir o valor deste na consola para verificar se estava tudo a funcionar correctamente. \linebreak
+
+O proximo passo foi testar o sensor de detecção de água, este foi bastante simples tendo em conta que devolve um sinal HIGH (5V) caso seja encontrada água nos contactos do sensor. \cite{water}. Depois montamos os 3 LDR's que servem para determinar a posição do sol, este foram também bastaste simples tendo em conta que já tinhamos feito circuitos com a utilização de LDR's no decorrer da cadeira. Só tivemos que os ligar e determinar no codigo qual dos LDR's estava a obter um valor de resistencia mais baixo. \linebreak
+
+Por fim faltava utilização de LED's infarvemelhos para ler a as rotações de um cata-vento, primeiro testamos utilizar simples LED's IR e contar as vezes que este era interrupido num certo periodo de tempo. Não obtimos sucesso, por isso recorremos ao sensor QTR-8RC mas utilizamos apenas um dos conjuntos de LED's. Para obter a leitura das Rotações por minuto fizemos uma função que durante 5 segundos consulta o valor obtido na porta analogica do LED receptor de 50 em 50 milisegundos. Caso este valor seja inferior ao do threshold definido (800) conta uma volta. Também tivemos que definir uma flag para evitar as mesmas leitura (caso o cata-vento estive-se parado). Para calcular um valor das rotações por minuto efectuamos uma regra de 3 simples para efectuar uma estimativa das rotações num minuto. \pagebreak
+
+Como podemos verificar na imagem seguinte, estavamos a obter os valores dos sensores todos na consola.
+
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=50mm]{Prints/valores_consola.png}
+\caption{Valores obtidos na consola do IDE.}
+\label{Rotulo}
+\end{figure}
+
+O unico aspecto que nos faltava para terminar a implementação em bare metal era mostrar os valores dos sensores num LCD 16x2.
+
+
+
 
 \clearpage
-
-O serviço também contem objectos para guardar as respostas recebidas em \textit{JSON} criados no serviço \textit{json2csharp} tal como podemos verificar na imagem seguinte:
-
-
-
-Este serviço atualmente esta publicado no \textit{Azure} e pode ser chamado usando o seguinte link \url{http://wcfrest20180109101801.azurewebsites.net/Service.svc/}.
-
-\clearpage
-
-O cliente foi  desenvolvido recorrendo ao \textit{Windows Presentation Foundation} (WPF) que recorre a linguagem de marcação \textit{Extensible Application Markup Language} (XAML) . Este é composto por 3 ambas (Endereços de IP/ Twitter / Meteorologia) onde existe uma interface onde podemos testar os serviços desevolvidos e ver os resultados. Podemos ver a aba do \textit{Twitter} na imagem seguinte.
 
 
 
@@ -197,39 +202,46 @@ Este trabalho permitiu-se aplicar os conhecimentos adquiridos durante o desenrol
 % Bilbiografia
 \begin{thebibliography}{2}
 
-	\bibitem{json2csharp}
-	\emph{json2csharp }.  01 Janeiro, 2018. 
-	\url{http://json2csharp.com/}
+	\bibitem{OneWire}
+	 PaulStoffregen. \emph{OneWire.h}.  06 Abril, 2018. 
+	\url{https://github.com/PaulStoffregen/OneWire}
 
 
-	\bibitem{TinyTwitter}
-	jmhdez. \emph{TinyTwitter}.  01 Janeiro, 2018. 
-	\url{https://github.com/jmhdez/TinyTwitter}
+	\bibitem{WaterproofDS18B20}
+	dfrobot. \emph{Waterproof DS18B20 Digital Temperature Sensor}.  06 Abril, 2018. 
+	\url{https://github.com/PaulStoffregen/OneWire}
 
 
-	\bibitem{Azure}
-	\emph{Azure}.  01 Janeiro, 2018. 
-	\url{https://portal.azure.com/}
+	\bibitem{sparkfunDS18B20}
+	sparkfun. \emph{DS18B20}.  06 Abril, 2018. 
+	\url{https://github.com/sparkfun/simple_sketches/blob/master/DS18B20/DS18B20.ino}
+
+	\bibitem{DHTadafruit}
+	 Adafruit. \emph{Adafruit Unified Sensor Driver.}  06 Abril, 2018. 
+	\url{https://github.com/adafruit/Adafruit_Sensor}
+
+	\bibitem{DHT}
+	 lady ada. \emph{Connecting to a DHTxx Sensor.}  06 Abril, 2018. 
+	\url{https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor}
 
 
-	\bibitem{ipapi}
-	\emph{ipapi.co}.  01 Janeiro, 2018. 
-	\url{https://ipapi.co/}
+	\bibitem{bmpBiblio}
+	Adafruit. \emph{A powerful but easy to use BMP085/BMP180 Library.}  06 Abril, 2018. 
+	\url{https://github.com/adafruit/Adafruit-BMP085-Library}
 
 
-	\bibitem{ipify}
-	\emph{ipify} A Simple IP Address API.  01 Janeiro, 2018. 
-	\url{https://www.ipify.org/}
+	\bibitem{bmp}
+	 Adilson Thomsen. \emph{Controlando temperatura e pressão com o BMP180.}  06 Abril, 2018. 
+	\url{https://www.filipeflop.com/blog/temperatura-pressao-bmp180-arduino/}
+
+	\bibitem{water}
+	 tutorialspoint. \emph{Arduino - Water Detector / Sensor.}  20 Abril, 2018. 
+	\url{https://www.tutorialspoint.com/arduino/arduino_water_detector_sensor.htm}
 
 
-	\bibitem{twitter}
-	\emph{Twitter} Developer Platform.  03 Janeiro, 2018. 
-	\url{https://developer.twitter.com/}
 
 
-	\bibitem{Weather}
-	\emph{OpenWeatherMap} Current weather and forecasts in your city.  05 Janeiro, 2018. 
-	\url{http://openweathermap.org/current}
+
 	
 
 \end{thebibliography}
