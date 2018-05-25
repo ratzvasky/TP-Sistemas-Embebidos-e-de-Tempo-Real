@@ -210,6 +210,7 @@ Makefile: ..\TrabalhoPratico2\TrabalhoPratico2.pro C:\Qt\5.10.1\msvc2017_64\mksp
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\qt_config.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\win32-msvc\qmake.conf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\exclusive_builds.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\common\msvc-version.conf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\toolchain.prf \
@@ -238,6 +239,7 @@ Makefile: ..\TrabalhoPratico2\TrabalhoPratico2.pro C:\Qt\5.10.1\msvc2017_64\mksp
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Gui.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qml.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Network.prl \
+		C:\Qt\5.10.1\msvc2017_64\lib\Qt5SerialPort.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Core.prl
 	$(QMAKE) -o Makefile ..\TrabalhoPratico2\TrabalhoPratico2.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\spec_pre.prf:
@@ -375,6 +377,7 @@ C:\Qt\5.10.1\msvc2017_64\mkspecs\features\qt_functions.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\qt_config.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\win32-msvc\qmake.conf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\exclusive_builds.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\common\msvc-version.conf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\toolchain.prf:
@@ -403,6 +406,7 @@ C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quick.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Gui.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qml.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Network.prl:
+C:\Qt\5.10.1\msvc2017_64\lib\Qt5SerialPort.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\TrabalhoPratico2\TrabalhoPratico2.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
