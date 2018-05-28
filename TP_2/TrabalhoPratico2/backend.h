@@ -25,6 +25,14 @@ private:
     QSerialPort *mCOM;
 
     QObject *humidadeValue;
+    QObject *temperaturaAmbValue;
+    QObject *temperaturaAmbValue2;
+    QObject *temperatuaAguaValue;
+    QObject *pressaoAtmosfericaValue;
+    QObject *altitudeValue;
+    QObject *velocidadeVentoValue;
+    QObject *sensorAguaValue;
+    QObject *posicaoSolValue;
 
 
 };
