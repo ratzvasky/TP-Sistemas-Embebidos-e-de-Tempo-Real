@@ -8,11 +8,6 @@ Backend::Backend(QObject *parent, QQmlApplicationEngine *ptr) : QObject(parent)
     this->humidadeValue = engine->rootObjects().at(0)->findChild<QObject*>("humidadeValue");
 
 
-    /*
-
-
-    this->m_rect = engine->rootObjects().at(0)->findChild<QObject*>("rect2"); */
-
     // Setup Serial COM
     this->mCOM = new QSerialPort();
     this->mCOM->setBaudRate(QSerialPort::Baud9600);
@@ -42,28 +37,50 @@ void Backend::updateUserInterface()
     */
 }
 
+
 // Método que le a informação da port COM3
 void Backend::dataReceived()
 {
     if(!mCOM->canReadLine())
         return;
 
-    QByteArray dataString;
+    QByteArray dataArray;
+
+
+    // Salvaguarda a informação numa string
+    dataArray = mCOM->readLine();
+    qDebug() << dataArray;
+
+
+    QString dataString(dataArray); // converte QByteArray para QString
+
+
+    updateData(dataString);
+}
+
+
+// Método que trata a informação e atualiza o frontend
+void Backend::updateData(QString dataString)
+{
     QStringList listString;
 
-    // salvaguarda a informação numa string
-    dataString = mCOM->readLine();
-    qDebug() << dataString;
 
-    QString str(dataString);
+    listString = dataString.split(";");
 
-    listString = str.split(";");
+    listString.removeLast(); // Remove os caracteres de controlo
+
+
+    if(listString.count() != 9) // verifica se recebe a quantidade dados adequeada
+        return;
 
     qDebug() << listString.at(0);
 
-     this->humidadeValue->setProperty("text", QString(listString.at(0)));
 
+    // Verica se a humidade tem um valor valido
+    if(QString(listString.at(0)).toInt() < 0 || QString(listString.at(0)).toInt() > 100 )
+        this->humidadeValue->setProperty("text", "N/A");
 
-
+    else
+        this->humidadeValue->setProperty("text", QString(listString.at(0)) + "%");
 
 }

@@ -18,6 +18,8 @@ public slots:
     void updateUserInterface();
     void dataReceived();
 
+    void updateData(QString dataString);
+
 private:
     QQmlApplicationEngine *engine;
     QSerialPort *mCOM;
