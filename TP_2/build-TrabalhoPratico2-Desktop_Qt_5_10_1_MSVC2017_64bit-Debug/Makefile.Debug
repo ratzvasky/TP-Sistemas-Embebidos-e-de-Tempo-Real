@@ -17,13 +17,13 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStri
 INCPATH       = -I..\TrabalhoPratico2 -I. -IC:\Qt\5.10.1\msvc2017_64\include -IC:\Qt\5.10.1\msvc2017_64\include\QtQuick -IC:\Qt\5.10.1\msvc2017_64\include\QtGui -IC:\Qt\5.10.1\msvc2017_64\include\QtANGLE -IC:\Qt\5.10.1\msvc2017_64\include\QtQml -IC:\Qt\5.10.1\msvc2017_64\include\QtNetwork -IC:\Qt\5.10.1\msvc2017_64\include\QtSerialPort -IC:\Qt\5.10.1\msvc2017_64\include\QtCore -Idebug -I\include -IC:\Qt\5.10.1\msvc2017_64\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.10.1\msvc2017_64\lib C:\Qt\5.10.1\msvc2017_64\lib\qtmaind.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quickd.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Guid.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qmld.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Networkd.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5SerialPortd.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Cored.lib 
+LIBS          = /LIBPATH:C:\Qt\5.10.1\msvc2017_64\lib C:\Qt\5.10.1\msvc2017_64\lib\qtmaind.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quickd.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Guid.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qmld.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Networkd.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5SerialPortd.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Cored.lib debug\icon.res 
 QMAKE         = C:\Qt\5.10.1\msvc2017_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\icon.res
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -53,7 +53,7 @@ OBJECTS       = debug\main.obj \
 		debug\qrc_qml.obj \
 		debug\moc_backend.obj
 
-DIST          =  ..\TrabalhoPratico2\backend.h ..\TrabalhoPratico2\main.cpp \
+DIST          = icon.rc ..\TrabalhoPratico2\backend.h ..\TrabalhoPratico2\main.cpp \
 		..\TrabalhoPratico2\backend.cpp
 QMAKE_TARGET  = TrabalhoPratico2
 DESTDIR        = debug\ #avoid trailing-slash linebreak
@@ -129,11 +129,14 @@ DESTDIR_TARGET = debug\TrabalhoPratico2.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET):  $(OBJECTS) 
+$(DESTDIR_TARGET):  $(OBJECTS) debug\icon.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 debug\main.obj debug\backend.obj debug\qrc_qml.obj debug\moc_backend.obj
 $(LIBS)
 <<
+
+debug\icon.res: ..\TrabalhoPratico2\icon.rc
+	rc /NOLOGO -D_DEBUG $(DEFINES) -fo debug\icon.res ..\TrabalhoPratico2\icon.rc
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug ..\TrabalhoPratico2\TrabalhoPratico2.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -146,6 +149,7 @@ dist:
 clean: compiler_clean 
 	-$(DEL_FILE) debug\main.obj debug\backend.obj debug\qrc_qml.obj debug\moc_backend.obj
 	-$(DEL_FILE) debug\TrabalhoPratico2.exp debug\TrabalhoPratico2.vc.pdb debug\TrabalhoPratico2.ilk debug\TrabalhoPratico2.idb
+	-$(DEL_FILE) debug\icon.res
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash debug\TrabalhoPratico2.lib debug\TrabalhoPratico2.pdb

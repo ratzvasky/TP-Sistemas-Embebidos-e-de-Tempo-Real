@@ -17,13 +17,13 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStri
 INCPATH       = -I..\TrabalhoPratico2 -I. -IC:\Qt\5.10.1\msvc2017_64\include -IC:\Qt\5.10.1\msvc2017_64\include\QtQuick -IC:\Qt\5.10.1\msvc2017_64\include\QtGui -IC:\Qt\5.10.1\msvc2017_64\include\QtANGLE -IC:\Qt\5.10.1\msvc2017_64\include\QtQml -IC:\Qt\5.10.1\msvc2017_64\include\QtNetwork -IC:\Qt\5.10.1\msvc2017_64\include\QtSerialPort -IC:\Qt\5.10.1\msvc2017_64\include\QtCore -Irelease -I\include -IC:\Qt\5.10.1\msvc2017_64\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.10.1\msvc2017_64\lib C:\Qt\5.10.1\msvc2017_64\lib\qtmain.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quick.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Gui.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qml.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Network.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5SerialPort.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:C:\Qt\5.10.1\msvc2017_64\lib C:\Qt\5.10.1\msvc2017_64\lib\qtmain.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quick.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Gui.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qml.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Network.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5SerialPort.lib C:\Qt\5.10.1\msvc2017_64\lib\Qt5Core.lib release\icon.res 
 QMAKE         = C:\Qt\5.10.1\msvc2017_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\icon.res
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -53,7 +53,7 @@ OBJECTS       = release\main.obj \
 		release\qrc_qml.obj \
 		release\moc_backend.obj
 
-DIST          =  ..\TrabalhoPratico2\backend.h ..\TrabalhoPratico2\main.cpp \
+DIST          = icon.rc ..\TrabalhoPratico2\backend.h ..\TrabalhoPratico2\main.cpp \
 		..\TrabalhoPratico2\backend.cpp
 QMAKE_TARGET  = TrabalhoPratico2
 DESTDIR        = release\ #avoid trailing-slash linebreak
@@ -129,11 +129,14 @@ DESTDIR_TARGET = release\TrabalhoPratico2.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET):  $(OBJECTS) 
+$(DESTDIR_TARGET):  $(OBJECTS) release\icon.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 release\main.obj release\backend.obj release\qrc_qml.obj release\moc_backend.obj
 $(LIBS)
 <<
+
+release\icon.res: ..\TrabalhoPratico2\icon.rc
+	rc /NOLOGO $(DEFINES) -fo release\icon.res ..\TrabalhoPratico2\icon.rc
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ..\TrabalhoPratico2\TrabalhoPratico2.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -146,6 +149,7 @@ dist:
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.obj release\backend.obj release\qrc_qml.obj release\moc_backend.obj
 	-$(DEL_FILE) release\TrabalhoPratico2.exp
+	-$(DEL_FILE) release\icon.res
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash release\TrabalhoPratico2.lib

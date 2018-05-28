@@ -32,3 +32,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     backend.h
+
+DISTFILES += \
+    icon.rc
+
+RC_FILE = icon.rc
