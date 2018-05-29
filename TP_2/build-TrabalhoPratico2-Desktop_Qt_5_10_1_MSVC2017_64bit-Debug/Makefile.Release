@@ -171,7 +171,12 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_qml.cpp
 release\qrc_qml.cpp: ..\TrabalhoPratico2\qml.qrc \
 		C:\Qt\5.10.1\msvc2017_64\bin\rcc.exe \
-		..\TrabalhoPratico2\main.qml
+		..\TrabalhoPratico2\main.qml \
+		..\TrabalhoPratico2\resources\south.png \
+		..\TrabalhoPratico2\resources\sun.png \
+		..\TrabalhoPratico2\resources\rain.png \
+		..\TrabalhoPratico2\resources\east.png \
+		..\TrabalhoPratico2\resources\west.png
 	C:\Qt\5.10.1\msvc2017_64\bin\rcc.exe -name qml ..\TrabalhoPratico2\qml.qrc -o release\qrc_qml.cpp
 
 compiler_moc_predefs_make_all: release\moc_predefs.h

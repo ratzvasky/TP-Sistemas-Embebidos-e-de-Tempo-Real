@@ -33,6 +33,13 @@ private:
     QObject *velocidadeVentoValue;
     QObject *sensorAguaValue;
     QObject *posicaoSolValue;
+    QObject *meteoInfo;
+
+    QObject *sunImage;
+    QObject *rainImage;
+    QObject *solPosicaoEsteImage;
+    QObject *solPosicaoSulImage;
+    QObject *solPosicaoOesteImage;
 
 
 };

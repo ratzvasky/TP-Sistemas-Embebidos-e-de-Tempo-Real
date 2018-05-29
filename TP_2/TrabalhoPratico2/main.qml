@@ -222,4 +222,102 @@ Window {
         anchors.leftMargin: 113
         font.pixelSize: 12
     }
+
+    Text {
+        id: meteoInfo
+        objectName: "meteoInfo"
+        x: 442
+        width: 198
+        height: 14
+        text: qsTr("")
+        anchors.top: sunImage.bottom
+        anchors.topMargin: 10
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: 12
+    }
+
+    Text {
+        id: solPosicaoTitulo
+        x: 499
+        text: qsTr("Posição do sol:")
+        font.bold: true
+        anchors.top: meteoInfo.bottom
+        anchors.topMargin: 20
+        font.pixelSize: 12
+    }
+
+
+    // Imagens do frontend
+
+    Image {
+        id: sunImage
+        objectName: "sunImage"
+        x: 474
+        width: 133
+        height: 121
+        anchors.top: titulo.bottom
+        anchors.topMargin: 68
+        visible: false
+        fillMode: Image.PreserveAspectFit
+        source: "resources/sun.png"
+    }
+
+
+    Image {
+        id: rainImage
+        objectName: "rainImage"
+        x: 482
+        width: 117
+        height: 121
+        anchors.top: titulo.bottom
+        anchors.topMargin: 68
+        visible: false
+        source: "resources/rain.png"
+    }
+
+
+    Image {
+        id: solPosicaoEsteImage
+        objectName: "solPosicaoEsteImage"
+        x: 490
+        y: 351
+        width: 100
+        height: 100
+        visible: false
+        anchors.top: solPosicaoTitulo.bottom
+        anchors.topMargin: 10
+        source: "resources/east.png"
+    }
+
+    Image {
+        id: solPosicaoSulImage
+        objectName: "solPosicaoSulImage"
+        x: 490
+        y: 351
+        width: 100
+        height: 100
+        visible: false
+        anchors.top: solPosicaoTitulo.bottom
+        anchors.topMargin: 10
+        source: "resources/south.png"
+    }
+
+    Image {
+        id: solPosicaoOesteImage
+        objectName: "solPosicaoOesteImage"
+        x: 490
+        width: 100
+        height: 100
+        visible: false
+        anchors.top: solPosicaoTitulo.bottom
+        anchors.topMargin: 10
+        source: "resources/west.png"
+    }
+
+
+
+
+
+
 }
