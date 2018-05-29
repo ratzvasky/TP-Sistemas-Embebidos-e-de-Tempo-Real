@@ -24,9 +24,7 @@ Backend::Backend(QObject *parent, QQmlApplicationEngine *ptr) : QObject(parent)
     this->solPosicaoOesteImage = engine->rootObjects().at(0)->findChild<QObject*>("solPosicaoOesteImage");
 
 
-
-
-    // Setup Serial COM
+    // Configura a porta COM3
     this->mCOM = new QSerialPort();
     this->mCOM->setBaudRate(QSerialPort::Baud9600);
     this->mCOM->setStopBits(QSerialPort::OneStop);
@@ -38,22 +36,8 @@ Backend::Backend(QObject *parent, QQmlApplicationEngine *ptr) : QObject(parent)
 
     connect(mCOM, SIGNAL(readyRead()), this, SLOT(dataReceived()));
 
-    //QTimer::singleShot(25, this, SLOT(updateUserInterface()));
 }
 
-void Backend::updateUserInterface()
-{
-    qDebug() << "in...";
-
-    /*
-    int rotation = m_rect->property("rotation").toInt();
-    m_rect->setProperty("rotation", rotation+1);
-
-    qDebug() << rotation;
-
-    QTimer::singleShot(25, this, SLOT(updateUserInterface()));
-    */
-}
 
 
 // Método que le a informação da port COM3
@@ -73,7 +57,7 @@ void Backend::dataReceived()
     QString dataString(dataArray); // converte QByteArray para QString
 
 
-    updateData(dataString);
+    updateData(dataString); // envia a data string para o método que faz update aos dados no frontend
 }
 
 
@@ -88,10 +72,9 @@ void Backend::updateData(QString dataString)
     listString.removeLast(); // Remove os caracteres de controlo
 
 
-    if(listString.count() != 9) // verifica se recebe a quantidade dados adequeada
+    // V se recebe a quantidade dados adequeada
+    if(listString.count() != 9)
         return;
-
-    qDebug() << listString.at(0);
 
 
     // Verica se a humidade tem um valor valido
@@ -102,19 +85,23 @@ void Backend::updateData(QString dataString)
         this->humidadeValue->setProperty("text", QString(listString.at(0)) + "%");
 
 
-    this->temperaturaAmbValue->setProperty("text", QString(listString.at(1)) + " Cº");
 
-    this->temperaturaAmbValue2->setProperty("text", QString(listString.at(3)) + " Cº");
+    // Atualiza os valores
+    this->temperaturaAmbValue->setProperty("text", QString(listString.at(1)) + "Cº");
 
-    this->temperatuaAguaValue->setProperty("text", QString(listString.at(2)) + " Cº");
+    this->temperaturaAmbValue2->setProperty("text", QString(listString.at(3)) + "Cº");
 
-    this->pressaoAtmosfericaValue->setProperty("text", QString(listString.at(4)) + "h");
+    this->temperatuaAguaValue->setProperty("text", QString(listString.at(2)) + "Cº");
+
+    this->pressaoAtmosfericaValue->setProperty("text", QString(listString.at(4)) + "Pa");
 
     this->altitudeValue->setProperty("text", QString(listString.at(5)) + "m");
 
     this->velocidadeVentoValue->setProperty("text", QString(listString.at(7)) + "RPM");
 
 
+
+    // Modifica a imagem do fronend (sol ou chuva) dependedo do valor recevido do sensor de agua
     if (QString(listString.at(6)).toInt() == 1 )
     {
         this->sensorAguaValue->setProperty("text", "Chuva");
@@ -142,7 +129,6 @@ void Backend::updateData(QString dataString)
         this->solPosicaoSulImage->setProperty("visible", false);
         this->solPosicaoOesteImage->setProperty("visible", false);
     }
-
 
     if (QString(listString.at(8)) == "Sul")
     {

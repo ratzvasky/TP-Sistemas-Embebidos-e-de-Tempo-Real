@@ -1,5 +1,17 @@
+/*
+ * Central meterológica - SETR ESI
+ *
+ * Rúben Guimarães nº11156
+ * Kyrylo Yavorenko nº10355
+ *
+ *
+ * FrontEnd do projeto
+ *
+ */
+
 import QtQuick 2.9
 import QtQuick.Window 2.2
+//import QtCharts 2.2
 
 Window {
     id: window

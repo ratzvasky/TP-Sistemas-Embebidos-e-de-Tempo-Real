@@ -1,3 +1,12 @@
+/*
+ * Central meterológica - SETR ESI
+ *
+ * Rúben Guimarães nº11156
+ * Kyrylo Yavorenko nº10355
+ *
+ *  BackEnd do projecto
+ */
+
 #ifndef BACKEND_H
 #define BACKEND_H
 
@@ -15,7 +24,6 @@ public:
 signals:
 
 public slots:
-    void updateUserInterface();
     void dataReceived();
 
     void updateData(QString dataString);

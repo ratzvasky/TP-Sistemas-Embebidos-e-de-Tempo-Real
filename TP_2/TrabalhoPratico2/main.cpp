@@ -1,3 +1,12 @@
+/*
+ * Central meterológica - SETR ESI
+ *
+ * Rúben Guimarães nº11156
+ * Kyrylo Yavorenko nº10355
+ *
+ *
+ */
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "backend.h"
