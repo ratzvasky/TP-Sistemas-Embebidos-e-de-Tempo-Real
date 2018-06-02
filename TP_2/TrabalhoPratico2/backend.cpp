@@ -23,6 +23,9 @@ Backend::Backend(QObject *parent, QQmlApplicationEngine *ptr) : QObject(parent)
     this->solPosicaoSulImage = engine->rootObjects().at(0)->findChild<QObject*>("solPosicaoSulImage");
     this->solPosicaoOesteImage = engine->rootObjects().at(0)->findChild<QObject*>("solPosicaoOesteImage");
 
+    this->grafico = engine->rootObjects().at(0)->findChild<QObject*>("grafico");
+
+
 
     // Configura a porta COM3
     this->mCOM = new QSerialPort();
@@ -143,4 +146,11 @@ void Backend::updateData(QString dataString)
         this->solPosicaoSulImage->setProperty("visible", false);
         this->solPosicaoOesteImage->setProperty("visible", true);
     }
+
+
+    listaTemperaturas.append(1);
+    listaTemperaturas.append(4);
+    listaTemperaturas.append(6);
+
+   grafico->removeSeries();
 }

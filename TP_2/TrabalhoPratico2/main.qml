@@ -11,7 +11,8 @@
 
 import QtQuick 2.9
 import QtQuick.Window 2.2
-//import QtCharts 2.2
+import QtCharts 2.2
+
 
 Window {
     id: window
@@ -19,6 +20,7 @@ Window {
     width: 1080
     height: 720
     color: "#ffffff"
+    property alias graficoTemperaturaTitle: graficoTemperatura.title
     title: qsTr("Central Meteorológica - SETR ESI")
 
 
@@ -326,6 +328,29 @@ Window {
         anchors.topMargin: 10
         source: "resources/west.png"
     }
+
+    // Graficos
+
+    ChartView {
+        objectName: grafico;
+        id: graficoTemperatura
+        y: 178
+        width: 400
+        height: 300
+        localizeNumbers: true
+        title: qsTr("<b>Grafico da Temperatura</b>") // <b> html para bold
+        anchors.left: solPosicaoTitulo.right
+        anchors.leftMargin: 80
+        antialiasing: true
+
+
+        LineSeries {
+            name: "Temperatura"
+            XYPoint { x: 0; y: 1 }
+            XYPoint { x: listaTemperaturas[1]; y: 2.1 }
+        }
+    }
+
 
 
 

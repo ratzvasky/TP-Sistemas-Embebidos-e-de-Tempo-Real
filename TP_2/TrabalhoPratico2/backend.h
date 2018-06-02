@@ -21,6 +21,8 @@ class Backend : public QObject
 public:
     explicit Backend(QObject *parent = nullptr, QQmlApplicationEngine *ptr = nullptr);
 
+    QList<qreal> listaTemperaturas;
+
 signals:
 
 public slots:
@@ -48,6 +50,11 @@ private:
     QObject *solPosicaoEsteImage;
     QObject *solPosicaoSulImage;
     QObject *solPosicaoOesteImage;
+
+    QObject *grafico;
+
+
+
 
 
 };

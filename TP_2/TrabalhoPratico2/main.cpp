@@ -9,11 +9,31 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtWidgets/QApplication>
+#include <QtQuick/QQuickView>
 #include "backend.h"
 
 
 int main(int argc, char *argv[])
 {
+
+    QApplication app(argc, argv);
+
+    QQuickView viewer;
+
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+        return -1;
+
+
+    Backend *myBackend;
+    myBackend = new Backend(0, &engine);
+
+
+    return app.exec();
+
+    /*
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
@@ -28,4 +48,5 @@ int main(int argc, char *argv[])
     myBackend = new Backend(0, &engine);
 
     return app.exec();
+    */
 }

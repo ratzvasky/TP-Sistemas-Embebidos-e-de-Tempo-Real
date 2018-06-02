@@ -114,6 +114,8 @@ Makefile: ..\TrabalhoPratico2\TrabalhoPratico2.pro C:\Qt\5.10.1\msvc2017_64\mksp
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri \
+		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_charts.pri \
+		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_core.pri \
@@ -225,6 +227,7 @@ Makefile: ..\TrabalhoPratico2\TrabalhoPratico2.pro C:\Qt\5.10.1\msvc2017_64\mksp
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\resources.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\moc.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\win32\opengl.prf \
+		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\uic.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\qmake_use.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\file_copies.prf \
 		C:\Qt\5.10.1\msvc2017_64\mkspecs\features\win32\windows.prf \
@@ -235,6 +238,8 @@ Makefile: ..\TrabalhoPratico2\TrabalhoPratico2.pro C:\Qt\5.10.1\msvc2017_64\mksp
 		..\TrabalhoPratico2\TrabalhoPratico2.pro \
 		C:\Qt\5.10.1\msvc2017_64\lib\qtmain.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quick.prl \
+		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Charts.prl \
+		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Widgets.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Gui.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qml.prl \
 		C:\Qt\5.10.1\msvc2017_64\lib\Qt5Network.prl \
@@ -280,6 +285,8 @@ C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri:
+C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_charts.pri:
+C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_charts_private.pri:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\modules\qt_lib_core.pri:
@@ -391,6 +398,7 @@ C:\Qt\5.10.1\msvc2017_64\mkspecs\features\qt.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\resources.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\moc.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\win32\opengl.prf:
+C:\Qt\5.10.1\msvc2017_64\mkspecs\features\uic.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\qmake_use.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\file_copies.prf:
 C:\Qt\5.10.1\msvc2017_64\mkspecs\features\win32\windows.prf:
@@ -401,6 +409,8 @@ C:\Qt\5.10.1\msvc2017_64\mkspecs\features\lex.prf:
 ..\TrabalhoPratico2\TrabalhoPratico2.pro:
 C:\Qt\5.10.1\msvc2017_64\lib\qtmain.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Quick.prl:
+C:\Qt\5.10.1\msvc2017_64\lib\Qt5Charts.prl:
+C:\Qt\5.10.1\msvc2017_64\lib\Qt5Widgets.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Gui.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Qml.prl:
 C:\Qt\5.10.1\msvc2017_64\lib\Qt5Network.prl:
