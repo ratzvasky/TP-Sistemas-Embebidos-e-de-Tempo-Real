@@ -21,6 +21,10 @@ class Backend : public QObject
 public:
     explicit Backend(QObject *parent = nullptr, QQmlApplicationEngine *ptr = nullptr);
 
+    Q_INVOKABLE QList<qreal> DevolveLista();
+
+
+
     QList<qreal> listaTemperaturas;
 
 signals:

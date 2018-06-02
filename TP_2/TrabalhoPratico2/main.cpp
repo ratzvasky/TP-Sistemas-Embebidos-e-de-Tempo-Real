@@ -26,10 +26,20 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
-
+    /*
     Backend *myBackend;
     myBackend = new Backend(0, &engine);
 
+    */
+
+    qmlRegisterType<Backend>("BackendLib", 1, 0, "Backend");
+
+
+
+    /*
+    Backend *myBackend;
+    myBackend = new Backend(0, &engine);
+*/
 
     return app.exec();
 

@@ -12,6 +12,8 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtCharts 2.2
+import BackendLib 1.0
+
 
 
 Window {
@@ -22,6 +24,14 @@ Window {
     color: "#ffffff"
     property alias graficoTemperaturaTitle: graficoTemperatura.title
     title: qsTr("Central Meteorológica - SETR ESI")
+
+    Backend
+    {
+        id: objectoBackEnd;
+    }
+
+
+
 
 
     // Label's dos dados
@@ -332,7 +342,6 @@ Window {
     // Graficos
 
     ChartView {
-        objectName: grafico;
         id: graficoTemperatura
         y: 178
         width: 400
@@ -347,7 +356,10 @@ Window {
         LineSeries {
             name: "Temperatura"
             XYPoint { x: 0; y: 1 }
-            XYPoint { x: listaTemperaturas[1]; y: 2.1 }
+            XYPoint { x: [1]; y: 2.1 }
+            property  var listaTemperaturas;
+            listaTemperaturas : objectoBackEnd.DevolveLista();
+
         }
     }
 

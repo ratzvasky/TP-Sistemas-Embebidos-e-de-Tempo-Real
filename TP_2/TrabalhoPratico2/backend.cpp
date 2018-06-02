@@ -5,6 +5,7 @@ Backend::Backend(QObject *parent, QQmlApplicationEngine *ptr) : QObject(parent)
 {
     this->engine = ptr;
 
+
     // Efetua a ligação das variaveis com os seus correnpondestes no frontend
     this->humidadeValue = engine->rootObjects().at(0)->findChild<QObject*>("humidadeValue"); 
     this->temperaturaAmbValue = engine->rootObjects().at(0)->findChild<QObject*>("temperaturaAmbValue");
@@ -152,5 +153,11 @@ void Backend::updateData(QString dataString)
     listaTemperaturas.append(4);
     listaTemperaturas.append(6);
 
-   grafico->removeSeries();
+
 }
+
+QList<qreal> Backend::DevolveLista()
+{
+     return listaTemperaturas;
+}
+
