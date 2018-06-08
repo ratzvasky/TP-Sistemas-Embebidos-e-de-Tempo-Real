@@ -25,6 +25,28 @@ Backend::Backend(QObject *parent, QQmlApplicationEngine *ptr) : QObject(parent)
     this->solPosicaoOesteImage = engine->rootObjects().at(0)->findChild<QObject*>("solPosicaoOesteImage");
 
     this->grafico = engine->rootObjects().at(0)->findChild<QObject*>("grafico");
+    this->chartview = engine->rootObjects().at(0)->findChild<QObject*>("graphTemp");
+
+    qDebug() << "sanity check";
+
+    QLineSeries *series = new QLineSeries();
+    series->append(0, 6);
+    series->append(2, 4);
+    series->append(3, 8);
+    series->append(7, 4);
+    series->append(10, 5);
+
+   // this->line = engine->rootObjects().at(0)->findChild<QLineSeries*>("line");
+
+
+
+    //this->line << series;
+
+    //QChart *chart = chartview->chart();
+    //chart->legend()->hide();
+    //chart->addSeries(series);
+    //chart->createDefaultAxes();
+    //chart->setTitle("Simple line chart example");
 
 
 
@@ -149,15 +171,8 @@ void Backend::updateData(QString dataString)
     }
 
 
-    listaTemperaturas.append(1);
-    listaTemperaturas.append(4);
-    listaTemperaturas.append(6);
 
 
 }
 
-QList<qreal> Backend::DevolveLista()
-{
-     return listaTemperaturas;
-}
 

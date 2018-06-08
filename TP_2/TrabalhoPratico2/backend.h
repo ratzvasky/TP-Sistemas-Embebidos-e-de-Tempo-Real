@@ -14,6 +14,10 @@
 #include <QQmlApplicationEngine>
 #include <QtSerialPort>
 #include <QTimer>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QChartView>
+
+using namespace QtCharts;
 
 class Backend : public QObject
 {
@@ -21,11 +25,8 @@ class Backend : public QObject
 public:
     explicit Backend(QObject *parent = nullptr, QQmlApplicationEngine *ptr = nullptr);
 
-    Q_INVOKABLE QList<qreal> DevolveLista();
 
 
-
-    QList<qreal> listaTemperaturas;
 
 signals:
 
@@ -56,8 +57,9 @@ private:
     QObject *solPosicaoOesteImage;
 
     QObject *grafico;
+    QObject *chartview;
 
-
+    QLineSeries line;
 
 
 
