@@ -20,7 +20,6 @@ Window {
     width: 1080
     height: 720
     color: "#ffffff"
-    property alias graficoTemperaturaTitle: graficoTemperatura.title
     title: qsTr("Central Meteorológica - SETR ESI")
 
 
@@ -332,7 +331,8 @@ Window {
 
     // Graficos
 
-    ChartView {
+    ChartView
+    {
         id: graficoTemperatura
         objectName: "graphTemp"
         y: 178
@@ -344,11 +344,69 @@ Window {
         anchors.leftMargin: 80
         antialiasing: true
 
-        LineSeries {
-            objectName: "line"
+        ValueAxis
+        {
+            id: valueAxisX
+            min: 0
+            max: 50
+            titleText: "Contagens"
         }
 
+        ValueAxis
+        {
+            id: valueAxisY
+            min: 0
+            max: 50
+            titleText: "Cº"
+        }
+
+        LineSeries
+        {
+            id: temperaturaAguaLine
+            axisX: valueAxisX
+            axisY: valueAxisY
+            name: "Temperatura da água"
+       }
+
+
+        LineSeries
+        {
+            id: temperaturaAmbLine
+            axisX: valueAxisX
+            axisY: valueAxisY
+            name: "Temperatura ambiente"
+       }
     }
 
 
+    Timer {
+        interval: 5000;
+        running: true;
+        repeat: true
+        property int contador: 0;
+        onTriggered:
+        {
+            var temperaturaAguaGrafico = temperatuaAguaValue.text[0] + temperatuaAguaValue.text[1] + temperatuaAguaValue.text[2] + temperatuaAguaValue.text[3] ;
+            var temperaturaAguaGraficoF = parseFloat(temperaturaAguaGrafico);
+
+            var temperaturaAmbienteGrafico = temperaturaAmbValue2.text[0] + temperaturaAmbValue2.text[1] + temperaturaAmbValue2.text[2] + temperaturaAmbValue2.text[3] ;
+            var temperaturaAmbienteGraficoF = parseFloat(temperaturaAmbienteGrafico);
+
+
+            if (typeof temperaturaAguaGraficoF == 'number' && typeof temperaturaAmbienteGraficoF == 'number') // Ignored NaN, Inf, or -Inf value. Apareçe devido ao facto temperaturaAguaGraficoF ainda não ser um numero
+            {
+                temperaturaAguaLine.append(contador,temperaturaAguaGrafico);
+                temperaturaAmbLine.append(contador, temperaturaAmbienteGraficoF);
+                contador++;
+            }
+
+
+            if (contador >= 50) // Se ultrapassar as 50 leituras limpa
+            {
+                temperaturaAguaLine.clear();
+                temperaturaAmbLine.clear();
+                contador = 0;
+            }
+        }
+    }
 }

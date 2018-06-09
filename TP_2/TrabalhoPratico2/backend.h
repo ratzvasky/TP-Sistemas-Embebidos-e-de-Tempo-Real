@@ -14,10 +14,7 @@
 #include <QQmlApplicationEngine>
 #include <QtSerialPort>
 #include <QTimer>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QChartView>
 
-using namespace QtCharts;
 
 class Backend : public QObject
 {
@@ -55,13 +52,6 @@ private:
     QObject *solPosicaoEsteImage;
     QObject *solPosicaoSulImage;
     QObject *solPosicaoOesteImage;
-
-    QObject *grafico;
-    QObject *chartview;
-
-    QLineSeries line;
-
-
 
 };
 

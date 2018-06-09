@@ -330,71 +330,6 @@ debug/moc_backend.cpp: C:/Qt/5.10.1/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qtserialportversion.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QTimer \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QLineSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qlineseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChartGlobal \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchartglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QtGlobal \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QXYSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qxyseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QAbstractSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qabstractseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QAbstractAxis \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qabstractaxis.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QPen \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpen.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtguiglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtgui-config.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qcolor.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qrgb.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qrgba64.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qbrush.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qmatrix.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpolygon.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qregion.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qwindowdefs.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtransform.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpainterpath.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qimage.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpixelformat.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpixmap.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qfont.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QVariant \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QBrush \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChartView \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchartview.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChart \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchart.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QLegend \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qlegend.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QGraphicsWidget \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicswidget.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtwidgets-config.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicslayoutitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qevent.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qkeysequence.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpalette.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QMargins \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QGraphicsView \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsview.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpainter.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qfontinfo.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qfontmetrics.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qscrollarea.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qwidget.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qcursor.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsscene.h \
 		../TrabalhoPratico2/backend.h \
 		debug/moc_predefs.h \
 		C:/Qt/5.10.1/mingw53_32/bin/moc.exe
@@ -695,41 +630,7 @@ debug/main.o: ../TrabalhoPratico2/main.cpp C:/Qt/5.10.1/mingw53_32/include/QtGui
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qserialport.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qtserialportversion.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QTimer \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QLineSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qlineseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChartGlobal \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchartglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QtGlobal \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QXYSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qxyseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QAbstractSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qabstractseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QAbstractAxis \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qabstractaxis.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QPen \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpen.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QVariant \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QBrush \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChartView \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchartview.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChart \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchart.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QLegend \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qlegend.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QGraphicsWidget \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicswidget.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicslayoutitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QGraphicsView \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsview.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpainter.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qscrollarea.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsscene.h
+		C:/Qt/5.10.1/mingw53_32/include/QtCore/QTimer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\TrabalhoPratico2\main.cpp
 
 debug/backend.o: ../TrabalhoPratico2/backend.cpp ../TrabalhoPratico2/backend.h \
@@ -943,71 +844,6 @@ debug/backend.o: ../TrabalhoPratico2/backend.cpp ../TrabalhoPratico2/backend.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtSerialPort/qtserialportversion.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QTimer \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QLineSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qlineseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChartGlobal \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchartglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QtGlobal \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QXYSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qxyseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QAbstractSeries \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qabstractseries.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QAbstractAxis \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qabstractaxis.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QPen \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpen.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtguiglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtgui-config.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qcolor.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qrgb.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qrgba64.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qbrush.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qmatrix.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpolygon.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qregion.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qwindowdefs.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtransform.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpainterpath.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qimage.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpixelformat.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpixmap.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qfont.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QVariant \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/QBrush \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChartView \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchartview.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QChart \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qchart.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/QLegend \
-		C:/Qt/5.10.1/mingw53_32/include/QtCharts/qlegend.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QGraphicsWidget \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicswidget.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtwidgets-config.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicslayoutitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qevent.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qkeysequence.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpalette.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QMargins \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QGraphicsView \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsview.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qpainter.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qfontinfo.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qfontmetrics.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qscrollarea.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qwidget.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtGui/qcursor.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgraphicsscene.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\backend.o ..\TrabalhoPratico2\backend.cpp
 
