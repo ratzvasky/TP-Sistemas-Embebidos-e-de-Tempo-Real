@@ -8,7 +8,7 @@ O primeiro trabalho consiste no desenvolvimento no de uma estação meteorológi
 
 O segundo trabalho consiste na criação de uma interface desenvolvida em QML que comunicasse com a placa Arduíno e mostra-se os dados ao utilizador de uma forma limpa e eficaz.
 
-![alt text](https://i.imgur.com/UZ1f4gB.png)
+![alt text](https://i.imgur.com/idZuNr7.png)
 
 Mais esclarecimentos podem ser encontrados nos respetivos relatórios de cada trabalho.
 
